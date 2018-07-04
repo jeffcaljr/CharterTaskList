@@ -16,11 +16,11 @@ public class Task {
 
     private String task;
 
-    private String date;
+    private Date date;
 
     protected Task(){}
 
-    public Task(String task, String date){
+    public Task(String task, Date date){
         this.task = task;
         this.date = date;
 
@@ -42,11 +42,11 @@ public class Task {
         this.task = task;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

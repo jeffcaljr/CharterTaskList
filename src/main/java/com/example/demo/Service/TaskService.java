@@ -41,7 +41,7 @@ public class TaskService {
         repository.save(foundTask);
     }
 
-    public void saveNewTask(String taskString, String date){
+    public void saveNewTask(String taskString, Date date){
         Task newTask = new Task(taskString, date);
         repository.save(newTask);
     }

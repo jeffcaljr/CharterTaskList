@@ -36,22 +36,18 @@ public class TaskController {
 
     //TODO: Accept date param and use it to configure Task
     @RequestMapping(method ={ RequestMethod.POST})
-    public void saveTask(@RequestParam("task") String taskName,
-                         HttpServletRequest request,
-                         HttpServletResponse response) throws TaskEmptyException {
+    public void saveTask(@RequestParam("task") String taskName) throws TaskEmptyException {
 
         if(StringUtils.isEmpty(taskName)){
             throw new TaskEmptyException("The task field should not be empty");
         }
 
-        taskService.saveNewTask(taskName, new Date().toString());
+        taskService.saveNewTask(taskName, new Date());
 
     }
 
     @RequestMapping(path = "/{id}", method = {RequestMethod.GET})
-    public Task getTaskById(@PathVariable("id") long id,
-                            HttpServletRequest request,
-                            HttpServletResponse response){
+    public Task getTaskById(@PathVariable("id") long id){
 
         Task foundTask = taskService.getTaskById(id);
 
@@ -72,7 +68,7 @@ public class TaskController {
     public void updateTask(@PathVariable("id") long id,
                            @RequestBody Task task){
 
-        log.info("Updating task " + id + " with taskString " + task.toString());
+        log.info("Updating task " + id + " with date " + task.getDate());
 
         taskService.updateTaskWithId(id, task);
     }

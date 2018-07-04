@@ -27,9 +27,9 @@ public class DemoApplication {
 
 
             //save some sample data
-            repository.save(new Task("Learn Spring Boot", new Date().toString()));
-            repository.save(new Task("Re-learn React", new Date().toString()));
-            repository.save(new Task("Learn reflux", new Date().toString()));
+            repository.save(new Task("Learn Spring Boot", new Date()));
+            repository.save(new Task("Re-learn React", new Date()));
+            repository.save(new Task("Learn reflux", new Date()));
 
             //query sample data
 
