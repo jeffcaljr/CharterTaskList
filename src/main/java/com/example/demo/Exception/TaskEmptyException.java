@@ -1,6 +1,6 @@
-package com.example.demo;
+package com.example.demo.Exception;
 
-public class TaskEmptyException extends TaskNotFoundException{
+public class TaskEmptyException extends TaskNotFoundException {
 
     public TaskEmptyException(){
         super();

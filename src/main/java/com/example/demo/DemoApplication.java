@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.Model.Task;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -8,7 +9,6 @@ import org.springframework.context.annotation.Bean;
 
 import java.util.Date;
 import java.util.Optional;
-import java.util.logging.Logger;
 
 @SpringBootApplication
 public class DemoApplication {
@@ -27,9 +27,9 @@ public class DemoApplication {
 
 
             //save some sample data
-            repository.save(new Task("Learn Spring Boot", new Date()));
-            repository.save(new Task("Re-learn React", new Date()));
-            repository.save(new Task("Learn reflux", new Date()));
+            repository.save(new Task("Learn Spring Boot", new Date().toString()));
+            repository.save(new Task("Re-learn React", new Date().toString()));
+            repository.save(new Task("Learn reflux", new Date().toString()));
 
             //query sample data
 

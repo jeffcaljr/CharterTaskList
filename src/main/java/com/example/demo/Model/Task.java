@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.Model;
 
 import javax.annotation.Generated;
 import javax.persistence.Entity;
@@ -16,11 +16,11 @@ public class Task {
 
     private String task;
 
-    private Date date;
+    private String date;
 
     protected Task(){}
 
-    public Task(String task, Date date){
+    public Task(String task, String date){
         this.task = task;
         this.date = date;
 
@@ -42,11 +42,11 @@ public class Task {
         this.task = task;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

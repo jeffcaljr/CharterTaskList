@@ -1,21 +1,19 @@
-package com.example.demo;
+package com.example.demo.Controller;
 
 
+import com.example.demo.Exception.TaskEmptyException;
+import com.example.demo.Model.Task;
+import com.example.demo.Service.TaskService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.HttpRequest;
-import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Collection;
 import java.util.Date;
-import java.util.Optional;
 
 @RestController
 @EnableAutoConfiguration
@@ -40,13 +38,13 @@ public class TaskController {
     @RequestMapping(method ={ RequestMethod.POST})
     public void saveTask(@RequestParam("task") String taskName,
                          HttpServletRequest request,
-                         HttpServletResponse response) throws TaskEmptyException{
+                         HttpServletResponse response) throws TaskEmptyException {
 
         if(StringUtils.isEmpty(taskName)){
             throw new TaskEmptyException("The task field should not be empty");
         }
 
-        taskService.saveNewTask(taskName, new Date());
+        taskService.saveNewTask(taskName, new Date().toString());
 
     }
 
@@ -66,13 +64,15 @@ public class TaskController {
     public void deleteTask(@PathVariable("id") long id){
 
         taskService.deleteTask(id);
+
+        log.info("Deleting task with id" + id);
     }
 
     @RequestMapping(path = "/{id}", method = {RequestMethod.PUT})
     public void updateTask(@PathVariable("id") long id,
-                           @RequestParam String task){
+                           @RequestBody Task task){
 
-        log.info("Updating task " + id + " with taskString " + task);
+        log.info("Updating task " + id + " with taskString " + task.toString());
 
         taskService.updateTaskWithId(id, task);
     }
