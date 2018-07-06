@@ -38,13 +38,16 @@ public class TaskController {
     //TODO: Accept date param and use it to configure Task
     @RequestMapping(method ={ RequestMethod.POST})
     @ResponseStatus(HttpStatus.CREATED)
-    public void saveTask(@RequestBody String task) throws TaskEmptyException {
+    @ResponseBody
+    public Task saveTask(@RequestBody String task) throws TaskEmptyException {
 
         if(StringUtils.isEmpty(task)){
             throw new TaskEmptyException("The task field should not be empty");
         }
 
-        taskService.saveNewTask(task, new Date());
+        Task newTask = taskService.saveNewTask(task, new Date());
+
+        return newTask;
 
     }
 
