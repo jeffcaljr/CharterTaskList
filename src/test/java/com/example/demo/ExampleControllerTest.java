@@ -34,4 +34,11 @@ public class ExampleControllerTest {
         Assert.assertEquals(true, true);
     }
 
+    @Test
+    public void sayHelloTest() throws Exception{
+        String hello = "Hi";
+
+        Assert.assertEquals(hello, "Hello");
+    }
+
 }

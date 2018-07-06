@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.http.HttpStatus;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,13 +37,14 @@ public class TaskController {
 
     //TODO: Accept date param and use it to configure Task
     @RequestMapping(method ={ RequestMethod.POST})
-    public void saveTask(@RequestParam("task") String taskName) throws TaskEmptyException {
+    @ResponseStatus(HttpStatus.CREATED)
+    public void saveTask(@RequestBody String task) throws TaskEmptyException {
 
-        if(StringUtils.isEmpty(taskName)){
+        if(StringUtils.isEmpty(task)){
             throw new TaskEmptyException("The task field should not be empty");
         }
 
-        taskService.saveNewTask(taskName, new Date());
+        taskService.saveNewTask(task, new Date());
 
     }
 
