@@ -25,7 +25,6 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
 
-    @CrossOrigin
     @RequestMapping(method ={RequestMethod.GET})
     public Iterable<Task> getAllTasks(){
 
@@ -36,7 +35,6 @@ public class TaskController {
 
 
     //TODO: Accept date param and use it to configure Task
-    @CrossOrigin
     @RequestMapping(method ={ RequestMethod.POST})
     public void saveTask(@RequestParam("task") String taskName) throws TaskEmptyException {
 
@@ -48,7 +46,6 @@ public class TaskController {
 
     }
 
-    @CrossOrigin
     @RequestMapping(path = "/{id}", method = {RequestMethod.GET})
     public Task getTaskById(@PathVariable("id") long id){
 
@@ -59,7 +56,6 @@ public class TaskController {
     }
 
 
-    @CrossOrigin
     @RequestMapping(path = "/{id}", method = {RequestMethod.DELETE})
     public void deleteTask(@PathVariable("id") long id){
 
@@ -68,7 +64,6 @@ public class TaskController {
         log.info("Deleting task with id" + id);
     }
 
-    @CrossOrigin
     @RequestMapping(path = "/{id}", method = {RequestMethod.PUT})
     public void updateTask(@PathVariable("id") long id,
                            @RequestBody Task task){
