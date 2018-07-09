@@ -26,44 +26,32 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
 
+
     @RequestMapping(method ={RequestMethod.GET})
     public Iterable<Task> getAllTasks(){
-
-        Iterable<Task> tasks = taskService.getAllTasks();
-
-        return tasks;
+        return taskService.getAllTasks();
     }
-
 
     //TODO: Accept date param and use it to configure Task
     @RequestMapping(method ={ RequestMethod.POST})
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public Task saveTask(@RequestBody String task) throws TaskEmptyException {
-
         if(StringUtils.isEmpty(task)){
             throw new TaskEmptyException("The task field should not be empty");
         }
 
-        Task newTask = taskService.saveNewTask(task, new Date());
-
-        return newTask;
-
+        return taskService.saveNewTask(task, new Date());
     }
 
     @RequestMapping(path = "/{id}", method = {RequestMethod.GET})
     public Task getTaskById(@PathVariable("id") long id){
-
-        Task foundTask = taskService.getTaskById(id);
-
-        return foundTask;
-
+        return taskService.getTaskById(id);
     }
 
 
     @RequestMapping(path = "/{id}", method = {RequestMethod.DELETE})
     public void deleteTask(@PathVariable("id") long id){
-
         taskService.deleteTask(id);
 
         log.info("Deleting task with id" + id);
@@ -72,7 +60,6 @@ public class TaskController {
     @RequestMapping(path = "/{id}", method = {RequestMethod.PUT})
     public void updateTask(@PathVariable("id") long id,
                            @RequestBody Task task){
-
         log.info("Updating task " + id + " with date " + task.getDate());
 
         taskService.updateTaskWithId(id, task);
